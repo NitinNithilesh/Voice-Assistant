@@ -13,12 +13,7 @@ def talkToMe(audio):
     for line in audio.splitlines():
         os.system("say " + audio)
 
-    #  use the system's inbuilt say command instead of mpg123
-    #  text_to_speech = gTTS(text=audio, lang='en')
-    #  text_to_speech.save('audio.mp3')
-    #  os.system('mpg123 audio.mp3')
-
-
+   
 def myCommand():
     "listens for commands"
 
@@ -34,7 +29,7 @@ def myCommand():
         command = r.recognize_google(audio).lower()
         print('You said: ' + command + '\n')
 
-    #loop back to continue to listen for commands if unrecognizable speech is received
+    
     except sr.UnknownValueError:
         talkToMe('Your last command couldn\'t be heard')
         command = myCommand();
