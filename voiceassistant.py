@@ -46,7 +46,16 @@ def assistant(command):
         webbrowser.open(url)
         print('Done!')
         talkToMe('Opened')
-
+        
+    elif 'open website' in command:
+        reg_ex = re.search('open website (.+)', command)
+        if reg_ex:
+            domain = reg_ex.group(1)
+            url = 'https://www.' + domain
+            talkToMe('Opening Website')
+            webbrowser.open(url)
+        else:
+            pass
     
     elif 'i am nitin' in command:
         talkToMe('hey how are you')
