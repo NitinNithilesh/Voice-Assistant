@@ -38,7 +38,7 @@ def myCommand():
 
 
 def assistant(command):
-    "if statements for executing commands"
+    "if statements for executing commands"while(talkToMe('H'))
 
     if 'open google' in command:
         reg_ex = re.search('open google (.*)', command)
@@ -59,6 +59,43 @@ def assistant(command):
     
     elif 'i am nitin' in command:
         talkToMe('hey how are you')
+    
+        elif 'same here' in command:
+        talkToMe('good')
+
+    elif 'who are you' in command:
+        talkToMe('I am sam, your voice assistant')
+    
+    elif 'how are you' in command:
+        talkToMe('good and you')
+        
+    elif 'remember' in command:
+        reg_ex=re.search('remember (.+)', command)
+        rem=reg_ex.group(1)
+        print(rem)
+        sql="INSERT INTO remember VALUES ('%s')" % (rem)
+        cursor.execute(sql)
+        db.commit()
+        talkToMe('Remembered')
+
+    elif 'remind me' in command:
+        sql="SELECT * FROM remember"
+        cursor.execute(sql)
+        results = cursor.fetchall()
+        for row in results:
+          data = row[0]
+          print ("%s" % (data))
+          db.commit()
+        talkToMe('These are the things you told me to remember')
+          
+    elif 'delete' in command:
+        sql="Delete from remember"
+        cursor.execute(sql)
+        db.commit()
+        talkToMe('Deleted things you told me to remember')
+        
+    elif 'thank you' in command:
+        talkToMe('You are Welcome')
     
     else:
         talkToMe('I don\'t know what you mean!')
